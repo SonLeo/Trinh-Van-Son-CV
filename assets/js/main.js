@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let currentSectionId = "";
         sections.forEach(section => {
             const rect = section.getBoundingClientRect();
-            console.log(rect)
             if (rect.top <= 1 && rect.bottom >= 0) {
                 currentSectionId = section.id;
             }
