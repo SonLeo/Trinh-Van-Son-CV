@@ -1,4 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // active nav menu
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".navlink");
+
+    function changeNavLink() {
+        const currentSectionId = getCurrentSectionId();
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${currentSectionId}`) {
+                link.classList.add("active");
+            }
+        });
+    }
+
+    function getCurrentSectionId() {
+        let currentSectionId = "";
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            console.log(rect)
+            if (rect.top <= 1 && rect.bottom >= 0) {
+                currentSectionId = section.id;
+            }
+        });
+        return currentSectionId;
+    }
+
+    window.addEventListener("scroll", changeNavLink);
+    changeNavLink();
+
     // Back to top button
     let backtotop = document.querySelector('.back-to-top');
 
@@ -23,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.toggle('mobile-nav-active');
             this.classList.toggle('bi-list')
             this.classList.toggle('bi-x')
-            console.log(mobileNavIcon);
         });
     }
 
@@ -118,12 +146,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Animation on scroll
-    window.addEventListener('load', () => {
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-            once: true,
-            mirror: false
-        })
-    });
+    AOS.init()
 });

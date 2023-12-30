@@ -656,8 +656,10 @@ button {
 }
 
 /* #Contact */
-.contact {
+#contact {
     padding-bottom: 40px;
+    position: relative;
+    top: 0 !important;
 }
 
 .contact-info {
